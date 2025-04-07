@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.87);
+  border-radius: 8px;
+  padding: 1rem;
+  gap: 1em;
+  input {
+    border: 1px solid rgba(255, 255, 255, 0.87);
+    border-radius: 8px;
+    width: -webkit-fill-available;
+    height: 2.5rem;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .form {
+    border: 1px solid #213547;
+    input {
+      border: 1px solid #213547;
+    }
+  }
+}

@@ -36,6 +36,10 @@ h1 {
   margin: 0;
 }
 
+input {
+  background-color: transparent;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -47,9 +51,12 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+input:hover,
 button:hover {
   border-color: #646cff;
 }
+input:focus,
+input:focus-visible,
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
