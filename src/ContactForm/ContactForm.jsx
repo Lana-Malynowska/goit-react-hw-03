@@ -1,5 +1,7 @@
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useId } from "react";
+import * as Yup from "yup";
+import { nanoid } from "nanoid";
 import s from "./ContactForm.module.css";
 
 const initialValues = {
@@ -7,26 +9,51 @@ const initialValues = {
   number: "",
 };
 
-const ContactForm = () => {
+const ContactForm = ({ onAdd }) => {
   const nameFieldId = useId();
   const numberFieldId = useId();
 
   const handleSubmit = (values, actions) => {
+    const newContact = {
+      id: nanoid(),
+      ...values,
+    };
+
+    onAdd(newContact);
     console.log(values);
     actions.resetForm();
   };
 
+  const applySchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, "Too Short!")
+      .max(50, "Too Long!")
+      .trim()
+      .required("Required"),
+    number: Yup.string()
+      .min(3, "Too Short!")
+      .max(50, "Too Long!")
+      .matches(/^\+?[0-9\s\-()]{7,20}$/, "Invalid phone number")
+      .required("Required"),
+  });
+
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik
+      validationSchema={applySchema}
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+    >
       <Form className={s.form}>
         <label htmlFor={nameFieldId}>
-          Name
+          <span>Name</span>
           <Field type="text" name="name" id={nameFieldId}></Field>
+          <ErrorMessage className={s.error} name="name" component="div" />
         </label>
 
         <label htmlFor={numberFieldId}>
-          Number
+          <span>Number</span>
           <Field type="text" name="number" id={numberFieldId}></Field>
+          <ErrorMessage className={s.error} name="number" component="div" />
         </label>
         <button type="submit">Add contact</button>
       </Form>

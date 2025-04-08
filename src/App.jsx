@@ -14,6 +14,12 @@ function App() {
   ]);
   const [inputValue, setInputValue] = useState("");
 
+  const addContact = (newContact) => {
+    setContacts((prevContacts) => {
+      return [...prevContacts, newContact];
+    });
+  };
+
   const deleteContact = (contactId) => {
     setContacts((prevContacts) => {
       return prevContacts.filter((contact) => contact.id !== contactId);
@@ -27,7 +33,7 @@ function App() {
   return (
     <>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm onAdd={addContact} />
       <SearchBox inputValue={inputValue} handleChange={setInputValue} />
       <ContactList contacts={filteredContacts} onDelete={deleteContact} />
     </>

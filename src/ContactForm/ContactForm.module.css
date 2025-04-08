@@ -11,6 +11,14 @@
     width: -webkit-fill-available;
     height: 2.5rem;
   }
+  input:hover {
+    border-color: #646cff;
+  }
+  input:focus {
+    outline: none;
+    border-color: #646cff;
+    box-shadow: 0 0 6px rgba(30, 144, 255, 0.6);
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -20,4 +28,8 @@
       border: 1px solid #213547;
     }
   }
+}
+
+.error {
+  color: #646cff;
 }
