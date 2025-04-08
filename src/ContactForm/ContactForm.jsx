@@ -1,7 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
-// import { nanoid } from "nanoid";
 import s from "./ContactForm.module.css";
 
 const initialValues = {

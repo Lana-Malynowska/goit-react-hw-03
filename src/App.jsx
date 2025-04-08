@@ -25,12 +25,6 @@ function App() {
     window.localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
 
-  // const addContact = (newContact) => {
-  //   setContacts((prevContacts) => {
-  //     return [...prevContacts, newContact];
-  //   });
-  // };
-
   const addContact = (newContact) => {
     const contactWithId = { id: nanoid(10), ...newContact };
     setContacts((prev) => [...prev, contactWithId]);
